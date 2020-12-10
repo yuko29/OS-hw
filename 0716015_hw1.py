@@ -32,13 +32,19 @@ def task2(url):
     print(soup.title.text)
     return 0
 
-
+async def task1_async(s):
+    S = s.encode()
+    for item in itertools.product(range(0x21, 0x7E), repeat=5):
+        C = bytes(item)
+        if hashlib.sha256(C+S).hexdigest()[0:5] == "00000":
+            print((C+S).decode())
+            return 0
 
 async def task2_async(url):
-    r = requests.get(url)
-    #print("q")
+    r = await loop.run_in_executor(None, requests.get, url)
     soup = BeautifulSoup(r.text, "html.parser")
     print(soup.title.text)
+    end = time.time()
     return 0
 
 
