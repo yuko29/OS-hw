@@ -107,13 +107,13 @@ elif method == 3:
     start = time.time()
     if task == 1:
         for i in range(taskNumber):
-            s = dataQueue.get()
+            s = shareQueue.get()
             task = loop.create_task(task1_async(s))
             tasks.append(task)
         loop.run_until_complete(asyncio.wait(tasks))
     else:
         for i in range(taskNumber):
-            s = dataQueue.get()
+            s = shareQueue.get()
             task = loop.create_task(task2_async(s))
             tasks.append(task)
         loop.run_until_complete(asyncio.wait(tasks))
