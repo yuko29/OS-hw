@@ -27,7 +27,11 @@ def task1(s):
             return 0
 
 def task2(url):
-    r = requests.get(url)
+    headers = {
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache"
+    }
+    r = requests.get(url, headers=headers)
     soup = BeautifulSoup(r.text, "html.parser")
     print(soup.title.text)
     return 0
